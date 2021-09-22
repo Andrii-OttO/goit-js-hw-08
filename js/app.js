@@ -63,7 +63,7 @@ const galleryItems = [
       description: 'Lighthouse Coast Sea',
     },
   ];
-/////
+
 const imageList = document.querySelector('.js-gallery');
 const imageBox = document.querySelector('.lightbox');
 const imageBoxContent = document.querySelector('.lightbox__content');
@@ -83,17 +83,12 @@ galleryItems.forEach(image=>{
       alt="${image.description}"
       /></a></li>`)});
 
-/////////
 imageList.addEventListener('click', onClick);
 
 function onClick(e){
   e.preventDefault();
   if(e.target.nodeName !== "gallery__image"){
   return lightImage.src = e.target.dataset.source,  imageBox.classList.add('is-open')
-  // const element = e.curentTarget.dataset.source
-  // lightImage.src = element
-  // lightImage.alt = e.curentTarget.alt
-  //console.log(e.target.dataset.source)
   }
 }
 
