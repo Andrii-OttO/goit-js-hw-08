@@ -67,10 +67,12 @@ const galleryItems = [
 const imageList = document.querySelector('.js-gallery');
 const imageBox = document.querySelector('.lightbox');
 const imageBoxContent = document.querySelector('.lightbox__content');
-const lightImage = document.querySelector('img.lightbox__image');
+const lightImage = document.querySelector('.lightbox__image');
 const btn = document.querySelector('.lightbox__button');
+const overlay = document.querySelector('.lightbox__overlay');
 
 galleryItems.forEach(image=>{
+
   imageList.insertAdjacentHTML(
     'beforeend',
     `<li class="gallery__item">
@@ -83,18 +85,26 @@ galleryItems.forEach(image=>{
       alt="${image.description}"
       /></a></li>`)});
 
+      
 imageList.addEventListener('click', onClick);
 
 function onClick(e){
   e.preventDefault();
-  if(e.target.nodeName !== "gallery__image"){
-  return lightImage.src = e.target.dataset.source,  imageBox.classList.add('is-open')
+  if(e.target.nodeName === 'IMG'){ 
+    return lightImage.src = e.target.dataset.source, 
+    imageBox.classList.add('is-open');
   }
 }
 
 btn.addEventListener('click', outOfPicture);
 console.log(lightImage)
-function outOfPicture(e){
+function outOfPicture(){
+  imageBox.classList.remove('is-open')
+  lightImage.src = '';
+}
+
+overlay.addEventListener('click', overlayClick);
+function overlayClick(){
   imageBox.classList.remove('is-open')
   lightImage.src = '';
 }
